@@ -5,6 +5,16 @@ var response = require('../../api/response');
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
 var config = require('../secret');
+const express = require('express');
+const app = express();
+var cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name:'youone',
+    api_key: '393244764989584',
+    api_secret: 'RN2eg3wB8Vf55eaqhia4hwuuw0Q'
+});
+
+
 exports.registrasi = (req , res) => {
         var post = {
             username : req.body.username,
@@ -90,4 +100,28 @@ exports.tampil2 = (req , res) => {
             if(err) throw err;
             response.nested(result , res);
     });
+}
+
+exports.uploadfile = (req, res ,next) => {
+            const filedata = req.files.photo;
+            filedata.mv("uploads/"+filedata.name, (err , result ) => {
+                if(err) throw err;
+                res.send({
+                    'status' : 200,
+                    'message' : 'success upload'
+                });
+            })
+            
+}
+
+exports.uploadfilecloud = (req, res ,next) => {
+    const filedata = req.files.photo;
+    cloudinary.uploader.upload(filedata.tempFilePath , (err ,result) => {
+        if(err) throw err;
+        res.send({
+            success: true,
+            result
+        });
+    });
+    
 }

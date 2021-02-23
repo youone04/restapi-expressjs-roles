@@ -5,6 +5,8 @@ var router = express.Router();
 
 router.post('/api/v1/register',auth.registrasi);
 router.post('/api/v1/login',auth.login);
+router.post('/api/v1/upload',auth.uploadfile);
+router.post('/api/v1/cloud',auth.uploadfilecloud);
 
 // url need auth
 router.get('/api/v1/secret' , verifikasi() ,auth.pagesecret);

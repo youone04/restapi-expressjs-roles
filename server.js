@@ -7,6 +7,10 @@ const routes = require('./api/router');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
+var fileUpload = require('express-fileupload');
+app.use(fileUpload({
+    useTempFiles: true
+}));
 
 routes(app);
 app.use('/auth' , require('./config/midleware'));
