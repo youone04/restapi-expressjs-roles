@@ -12,6 +12,8 @@ exports.ok = (values , res) => {
 
 exports.nested = (values , res) => {
     const hasil = values.reduce((akumulasikan , item) => {
+           //akumulasi hasil dari aksi
+            //item/curent = yang sedang di luping
 
         if(akumulasikan[item.nama]){//jka undifined maka masuk else, jika data ada contoh yudi gunawan, maka semua data yudi gunawan masuk sini dan selesaikan dulu, lalu name selanjutnya
             // jika ada masuk sini
