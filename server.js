@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-var morgan = require('morgan');
+var morgan = require('morgan');//berguna untuk memanage route api
+var fs = require('fs');
 const routes = require('./api/router');
 
 app.use(bodyParser.json());
@@ -11,6 +12,9 @@ var fileUpload = require('express-fileupload');
 app.use(fileUpload({
     useTempFiles: true
 }));
+
+app.use('/uploads', express.static('uploads'));
+
 
 routes(app);
 app.use('/auth' , require('./config/midleware'));
