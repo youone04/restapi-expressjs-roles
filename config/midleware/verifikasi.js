@@ -4,6 +4,7 @@ const config = require('../../config/secret');
 const verifikasi = () => {
         return (req , res, next) => {
             var roles = req.body.role;
+            // console.log(req.body)
             // cek authorizzation header
             var tokenWithBearer = req.headers.authorization;
             if(tokenWithBearer){
@@ -18,7 +19,7 @@ const verifikasi = () => {
                     }else{
                         if(roles == 2){
                             req.auth = decoded;
-                            next()
+                            next();//callback
                         }else{
                             return res.status(401).send({
                                 auth: false,

@@ -54,7 +54,6 @@ exports.login = (req , res) => {
         password: req.body.password,
         email: req.body.email
     };
-
     var query = 'select * from ?? where ?? = ? and ?? = ?';
     var table = ['user' , 'password' ,md5(post.password) ,'email' , post.email];
     query = mysql.format(query , table);
@@ -68,7 +67,8 @@ exports.login = (req , res) => {
             var data = {
                 id_user: id_user,
                 akses_token : token,
-                ip_address: ip.address()
+                ip_address: ip.address(),
+                role: rows[0].role
             }
             var query = 'insert into ?? set ?';
             var table =['akses_token'];
@@ -78,7 +78,8 @@ exports.login = (req , res) => {
                 res.json({
                     success: true,
                     token: token,
-                    currUser: data.id_user
+                    currUser: data.id_user,
+                    role: data.role
                     
                 });
             })

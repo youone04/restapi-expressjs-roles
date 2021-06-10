@@ -15,6 +15,7 @@ exports.nested = (values , res) => {
            //akumulasi hasil dari aksi
             //item/curent = yang sedang di luping
 
+        // keynya
         if(akumulasikan[item.nama]){//jka undifined maka masuk else, jika data ada contoh yudi gunawan, maka semua data yudi gunawan masuk sini dan selesaikan dulu, lalu name selanjutnya
             // jika ada masuk sini
             const group = akumulasikan[item.nama];//mejnadi key dr arrray baru
