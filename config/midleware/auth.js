@@ -108,12 +108,13 @@ exports.uploadfile = (req, res ,next) => {
             const filedata = req.files.photo;
             filedata.mv("uploads/"+filedata.name, (err , result ) => {
                 if(err) throw err;
-                console.log(result)
-                res.send({
-                    'status' : 200,
-                    'message' : 'success upload',
-                    "data" : result
+                connection.query(`INSERT INTO media VALUES (${null},"${filedata.name}")`, (err , hasil) => {
+                    if(err) throw err;
+                    res.send({
+                    success: true,
+                    message : "Berhasil"
                 });
+                })
             })
             
 }
