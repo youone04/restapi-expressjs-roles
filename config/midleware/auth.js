@@ -8,6 +8,7 @@ var config = require('../secret');
 const express = require('express');
 const app = express();
 var cloudinary = require('cloudinary').v2;
+const { NULL } = require('mysql/lib/protocol/constants/types');
 cloudinary.config({
     cloud_name:'youone',
     api_key: '393244764989584',
@@ -107,9 +108,11 @@ exports.uploadfile = (req, res ,next) => {
             const filedata = req.files.photo;
             filedata.mv("uploads/"+filedata.name, (err , result ) => {
                 if(err) throw err;
+                console.log(result)
                 res.send({
                     'status' : 200,
-                    'message' : 'success upload'
+                    'message' : 'success upload',
+                    "data" : result
                 });
             })
             
@@ -118,11 +121,16 @@ exports.uploadfile = (req, res ,next) => {
 exports.uploadfilecloud = (req, res ,next) => {
     const filedata = req.files.photo;
     cloudinary.uploader.upload(filedata.tempFilePath , (err ,result) => {
+      
         if(err) throw err;
-        res.send({
+        connection.query(`INSERT INTO media VALUES (${null},"${result.secure_url}")`, (err , hasil) => {
+            if(err) throw err;
+            res.send({
             success: true,
-            result
+            message : "Berhasil"
         });
+        })
+        
     });
     
 }
