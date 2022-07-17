@@ -17,6 +17,7 @@ app.use('/uploads', express.static('uploads'));
 
 
 routes(app);
+// middle ware harus login
 app.use('/auth' , require('./config/midleware'));
 
 app.listen(3000 , () => {

@@ -1,0 +1,80 @@
+
+    {
+        "awal": [
+            {
+                "id_mahasiswa": 5,
+                "nim": "14117035",
+                "nama": "yudi gunawan",
+                "jurusan": "Teknik informatika",
+                "matakuliah": "pemrograman web",
+                "sks": 3
+            },
+            {
+                "id_mahasiswa": 5,
+                "nim": "14117035",
+                "nama": "yudi gunawan",
+                "jurusan": "Teknik informatika",
+                "matakuliah": "Matriks dan ruang vektor",
+                "sks": 3
+            },
+            {
+                "id_mahasiswa": 6,
+                "nim": "177393",
+                "nama": "yadi santoso",
+                "jurusan": "Teknik pangan",
+                "matakuliah": "matematika diskrit",
+                "sks": 2
+            },
+            {
+                "id_mahasiswa": 6,
+                "nim": "177393",
+                "nama": "yadi santoso",
+                "jurusan": "Teknik pangan",
+                "matakuliah": "pemrograman web",
+                "sks": 3
+            },
+            {
+                "id_mahasiswa": 6,
+                "nim": "177393",
+                "nama": "yadi santoso",
+                "jurusan": "Teknik pangan",
+                "matakuliah": "statistik",
+                "sks": 3
+            },
+            {
+                "id_mahasiswa": 6,
+                "nim": "177393",
+                "nama": "yadi santoso",
+                "jurusan": "Teknik pangan",
+                "matakuliah": "Proyek perangkat lunak",
+                "sks": 4
+            }
+        ],
+        
+        "hasil": {
+            "yudi gunawan": {
+                "id_mahasiswa": 5,
+                "nim": "14117035",
+                "nama": "yudi gunawan",
+                "jurusan": "Teknik informatika",
+                "matakuliah": [
+                    "pemrograman web",
+                    "Matriks dan ruang vektor"
+                ],
+                "sks": 3
+            },
+            "yadi santoso": {
+                "id_mahasiswa": 6,
+                "nim": "177393",
+                "nama": "yadi santoso",
+                "jurusan": "Teknik pangan",
+                "matakuliah": [
+                    "matematika diskrit",
+                    "pemrograman web",
+                    "statistik",
+                    "Proyek perangkat lunak"
+                ],
+                "sks": 2
+            }
+        }
+    }

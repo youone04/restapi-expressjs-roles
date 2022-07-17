@@ -105,11 +105,13 @@ exports.tampil2 = (req , res) => {
 
 exports.uploadfile = (req, res ,next) => {
             const filedata = req.files.photo;
-            filedata.mv("uploads/"+filedata.name, (err , result ) => {
+            filedata.mv("uploads/"+filedata.name, async(err , result ) => {
                 if(err) throw err;
-                res.send({
+                // connection.query(`insert into tbl_gambar VALUES (value1, value2, value3,...valueN)`)
+                res.json({
                     'status' : 200,
-                    'message' : 'success upload'
+                    'message' : 'success uploads',
+                    'data' : filedata.name
                 });
             })
             
