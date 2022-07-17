@@ -8,6 +8,7 @@ var config = require('../secret');
 const express = require('express');
 const app = express();
 var cloudinary = require('cloudinary').v2;
+const { NULL } = require('mysql/lib/protocol/constants/types');
 cloudinary.config({
     cloud_name:'youone',
     api_key: '393244764989584',
@@ -107,12 +108,13 @@ exports.uploadfile = (req, res ,next) => {
             const filedata = req.files.photo;
             filedata.mv("uploads/"+filedata.name, async(err , result ) => {
                 if(err) throw err;
-                // connection.query(`insert into tbl_gambar VALUES (value1, value2, value3,...valueN)`)
-                res.json({
-                    'status' : 200,
-                    'message' : 'success uploads',
-                    'data' : filedata.name
+                connection.query(`INSERT INTO media VALUES (${null},"${filedata.name}")`, (err , hasil) => {
+                    if(err) throw err;
+                    res.send({
+                    success: true,
+                    message : "Berhasil"
                 });
+                })
             })
             
 }
@@ -120,11 +122,16 @@ exports.uploadfile = (req, res ,next) => {
 exports.uploadfilecloud = (req, res ,next) => {
     const filedata = req.files.photo;
     cloudinary.uploader.upload(filedata.tempFilePath , (err ,result) => {
+      
         if(err) throw err;
-        res.send({
+        connection.query(`INSERT INTO media VALUES (${null},"${result.secure_url}")`, (err , hasil) => {
+            if(err) throw err;
+            res.send({
             success: true,
-            result
+            message : "Berhasil"
         });
+        })
+        
     });
     
 }
